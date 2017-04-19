@@ -12,9 +12,8 @@ window.onload  = function(){
 	var other_comment = document.getElementsByClassName("other_comment");
 	//评论展开收起
 	for(var i = 0; i<selected.length;i++){
-
-			selected[i].onclick = function(){
 			var thistext =[];
+			selected[i].onclick = function(){
 			var that = this;
 			thistext.push(this.innerHTML);			
 				if(that.innerHTML == "收起"){
@@ -27,6 +26,7 @@ window.onload  = function(){
 					console.log(that.innerHTML);
 				}	
 			}
+			thistext =[];
 	}
 	
 	
@@ -50,13 +50,15 @@ window.onload  = function(){
 				a[j].className = "curr";
 			}
 		}
-		if(a.length>=6){
+		if(a.length>=5){
 			for (var j=0; j<a.length;j++) {
 				a[j].className = "currs";
 			}
 		}
+		
 	}
 }
+//删除自己的动态
 $(".delete").on("click",function(){
 	$(this).parents("article").remove();
 })
@@ -65,3 +67,22 @@ $(".pecure a").on("click",function(){
 	var that = $(this).find("img").attr("src");
 	$(".hide img").attr("src",that);
 })
+
+
+//隐藏遮罩层
+$(".hide span").on("click",function(){
+	$(this).parents(".hide").hide();
+})
+//赞
+$(".laud").on("click",function(){
+	console.log()
+	var num = $(this).parent().text();
+	if($(this).hasClass("curr")){
+		 num --;
+	}else{
+		num++;
+	}
+	$(this).siblings().text(num);
+	$(this).toggleClass("curr");
+})
+
